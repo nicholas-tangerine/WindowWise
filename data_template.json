@@ -2,7 +2,6 @@
   "users": 
   [
     {
-      "username": "aeaea",
       "lat": "50.0000",
       "long": "50.0000",
       "hour": "0",
@@ -10,8 +9,10 @@
       "windowOpen": false,
       "email": "abc@abc.com",
       "emailNotifs": false,
-      "discordID": "12312313123123123",
-      "discordNotifs": true
+      "discordUsername": "wqnderalone",
+      "discordNotifs": true,
+      "windowOpenEpoch": "1728759588142",
+      "windowCloseEpoch": "9999999999999"
     }
   ],
   "guildIDs":
