@@ -1,5 +1,5 @@
 import { config } from "dotenv"
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFile, writeFileSync } from 'fs'
 
 //import email stuff 
 
@@ -9,11 +9,12 @@ import { EmbedBuilder } from "discord.js";
 
 config()
 
-let data = JSON.parse(readFileSync('./data_template.json'))
+let data = JSON.parse(readFileSync('./data.json'))
 let users = data['users']
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 const api = new API(rest);
+
 
 /**
  * send dm given username
@@ -72,7 +73,7 @@ export async function dmUsers() {
     data['users'] = users
 
     //update json
-    writeFileSync('./data_template.json', JSON.stringify(data))
+    writeFileSync('./data.json', JSON.stringify(data))
 }
 
 dmUsers()
