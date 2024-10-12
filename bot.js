@@ -1,5 +1,5 @@
 import { config } from "dotenv"
-import { readFileSync, writeFile } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 
 //import email stuff 
 
@@ -21,7 +21,7 @@ const api = new API(rest);
  * @param {EmbedBuilder} embed 
  */
 export async function sendDM(globalName, embed) {
-    const allMembers = await api.guilds.getMembers(guildId, { limit: 100 });
+    const allMembers = await api.guilds.getMembers(process.env.GUILD_ID, { limit: 100 });
 
     const member = allMembers.filter(member => member.user.username === globalName)[0];
 
@@ -54,16 +54,25 @@ export async function dmUsers() {
         if (user['windowOpenEpoch'] <= Date.now() || user['windowCloseEpoch'] <= Date.now()) {
             let action = (user['windowOpenEpoch'] <= Date.now()) ? 'close' : 'open'
 
-            embed.addFields([{ name: action + "ur windows", value: "!!!" }])
+            embed.addFields([{ name: action + " ur windows", value: "!!!" }])
             sendDM(user['discordUsername'], embed)
         }
+        
 
-        user['windowEpoch'] = '99999999999999999999'
+        if (user['windowOpenEpoch'] <= Date.now()) {
+            user['windowOpenEpoch'] = '99999999999999999999'
+        }
+        if (user['windowCloseEpoch'] <= Date.now()) {
+            user['windowCloseEpoch'] = '99999999999999999999'
+        }
+
         user['windowOpen'] = !user['windowOpen']
     });
 
     data['users'] = users
 
     //update json
-    writeFile('./data_template.json', JSON.stringify(data))
+    writeFileSync('./data_template.json', JSON.stringify(data))
 }
+
+dmUsers()
