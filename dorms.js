@@ -1,5 +1,5 @@
-import config from "./calculator_config.json" with { type: "json" };
-
+import { config } from "dotenv";
+config()
 
 /** The height of a dorm ceiling, in meters. */
 const CEILING_HEIGHT = 2.4384;
@@ -39,10 +39,10 @@ const RoomType = {
  *
  * @return an object containting the latitude, longitude, room volume, and window area.
  */
-function getDormParameters(college, roomType) {
+export function getDormParameters(college, roomType) {
     let locationParameters = getLocationByCollege(college);
     let roomParameters = getRoomParameters(roomType);
-    return {...locationParameters, ...roomParameters};
+    return { ...locationParameters, ...roomParameters };
 }
 
 
@@ -57,8 +57,8 @@ function getDormParameters(college, roomType) {
  */
 async function getAddressParamters(address, roomVolume, windowArea) {
     let locationParameters = await getLocationByAddress(address);
-    let roomParamters = {roomVolume: roomVolume, windowArea: windowArea};
-    return {...locationParameters, ...roomParameters};
+    let roomParamters = { roomVolume: roomVolume, windowArea: windowArea };
+    return { ...locationParameters, ...roomParameters };
 }
 
 
@@ -71,28 +71,28 @@ async function getAddressParamters(address, roomVolume, windowArea) {
  */
 function getLocationByCollege(college) {
     switch (college) {
-    case College.COWELL:
-        return {latitude: 36.99726734074804, longitude: -122.05423661731234};
-    case College.STEVENSON:
-        return {latitude: 36.99706194303461, longitude: -122.0519205634501};
-    case College.CROWN:
-        return {latitude: 37.00031637845457, longitude: -122.05448116395414};
-    case College.MERRILL:
-        return {latitude: 36.999963786354435, longitude: -122.05329464903268};
-    case College.COLLEGE_NINE:
-        return {latitude: 37.001655220261696, longitude: -122.05728241260152};
-    case College.JOHN_R_LEWIS:
-        return {latitude: 37.00074698072326, longitude: -122.05853493213417};
-    case College.PORTER:
-        return {latitude: 36.99438286274733, longitude: -122.06524433080737};
-    case College.KRESGE:
-        return {latitude: 36.99739927086994, longitude: -122.06655489160133};
-    case College.OAKES:
-        return {latitude: 36.98957833602917, longitude: -122.0629012398393};
-    case College.RACHEL_CARSON:
-        return {latitude: 36.99126142741995, longitude: -122.06464850197234};
-    default:
-        throw new Error("Unknown UCSC residential college '" + college + "'");
+        case College.COWELL:
+            return { latitude: 36.99726734074804, longitude: -122.05423661731234 };
+        case College.STEVENSON:
+            return { latitude: 36.99706194303461, longitude: -122.0519205634501 };
+        case College.CROWN:
+            return { latitude: 37.00031637845457, longitude: -122.05448116395414 };
+        case College.MERRILL:
+            return { latitude: 36.999963786354435, longitude: -122.05329464903268 };
+        case College.COLLEGE_NINE:
+            return { latitude: 37.001655220261696, longitude: -122.05728241260152 };
+        case College.JOHN_R_LEWIS:
+            return { latitude: 37.00074698072326, longitude: -122.05853493213417 };
+        case College.PORTER:
+            return { latitude: 36.99438286274733, longitude: -122.06524433080737 };
+        case College.KRESGE:
+            return { latitude: 36.99739927086994, longitude: -122.06655489160133 };
+        case College.OAKES:
+            return { latitude: 36.98957833602917, longitude: -122.0629012398393 };
+        case College.RACHEL_CARSON:
+            return { latitude: 36.99126142741995, longitude: -122.06464850197234 };
+        default:
+            throw new Error("Unknown UCSC residential college '" + college + "'");
     }
 }
 
@@ -106,14 +106,14 @@ function getLocationByCollege(college) {
  */
 function getRoomParameters(roomType) {
     switch (roomType) {
-    case RoomType.SINGLE:
-        return {roomVolume: 7.892 * CEILING_HEIGHT, windowArea: 1.118 * WINDOW_HEIGHT};
-    case RoomType.DOUBLE:
-        return {roomVolume: 11.47 * CEILING_HEIGHT, windowArea: 1.651 * WINDOW_HEIGHT};
-    case RoomType.TRIPLE:
-        return {roomVolume: 15.71 * CEILING_HEIGHT, windowArea: 1.651 * WINDOW_HEIGHT};
-    case RoomType.LARGE_TRIPLE:
-        return {roomVolume: 20.82 * CEILING_HEIGHT, windowArea: 2.438 * WINDOW_HEIGHT};
+        case RoomType.SINGLE:
+            return { roomVolume: 7.892 * CEILING_HEIGHT, windowArea: 1.118 * WINDOW_HEIGHT };
+        case RoomType.DOUBLE:
+            return { roomVolume: 11.47 * CEILING_HEIGHT, windowArea: 1.651 * WINDOW_HEIGHT };
+        case RoomType.TRIPLE:
+            return { roomVolume: 15.71 * CEILING_HEIGHT, windowArea: 1.651 * WINDOW_HEIGHT };
+        case RoomType.LARGE_TRIPLE:
+            return { roomVolume: 20.82 * CEILING_HEIGHT, windowArea: 2.438 * WINDOW_HEIGHT };
     }
 }
 
@@ -135,7 +135,7 @@ async function getLocationByAddress(address) {
             let results = data.results;
             if (results.length > 0) {
                 let location = results[0].geometry.location;
-                addressData = {latitude: location.lat, longitude: location.lng};
+                addressData = { latitude: location.lat, longitude: location.lng };
             }
         })
         .catch((error) => {
@@ -153,5 +153,5 @@ async function getLocationByAddress(address) {
 function getGeocoderEndpoint(address) {
     return "https://maps.googleapis.com/maps/api/geocode/json?" +
         "address=" + address + "&" +
-        "key=" + config.GeocoderKey;
+        "key=" + process.env.GEOCODER_KEY;
 }

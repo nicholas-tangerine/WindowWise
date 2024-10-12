@@ -1,5 +1,5 @@
-import config from "./calculator_config.json" with { type: "json" };
-
+import { config } from "dotenv";
+config()
 
 /** Time step for numerical integration, in seconds. */
 const DELTA_TIME = 1.0;
@@ -25,14 +25,13 @@ const HEAT_TRANSFER_COEFF = 10.0;
  * @return a structure containing the time to leave the window open (`time`) and the final
  *         temperature reached after that time (`finalTemp`).
  */
-async function calculateTime(currentTemp,
-                             targetTemp,
-                             latitude,
-                             longitude,
-                             roomVolume,
-                             windowArea,
-                             percentError = 0.1)
-{
+export async function calculateTime(currentTemp,
+    targetTemp,
+    latitude,
+    longitude,
+    roomVolume,
+    windowArea,
+    percentError = 0.1) {
     let now = new Date();
     let weatherData = await getWeatherData(latitude, longitude);
 
@@ -150,8 +149,8 @@ async function getWeatherData(latitude, longitude) {
  */
 function getWeatherEndpoint(latitude, longitude) {
     return "https://api.openweathermap.org/data/2.5/forecast?" +
-	"lat=" + latitude + "&" +
-	"lon=" + longitude + "&" +
-	"units=metric&" +
-	"appid=" + config.OpenWeatherMapKey;  // MARK: no hard coded key
+        "lat=" + latitude + "&" +
+        "lon=" + longitude + "&" +
+        "units=metric&" +
+        "appid=" + process.env.OPEN_WEATHER_MAP_KEY;  // MARK: no hard coded key
 }

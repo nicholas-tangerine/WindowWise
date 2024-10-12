@@ -15,17 +15,14 @@ let users = data['users']
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 const api = new API(rest);
 
-const guildID = '1294533411205152858'
-const globalName = 'wqnderalone'
-
 /**
  * send dm given username
  * @param {string} globalName 
  * @param {EmbedBuilder} embed 
  */
 export async function sendDM(globalName, embed) {
-    const allMembers = await api.guilds.getMembers(guildID, { limit : 100 });
-    
+    const allMembers = await api.guilds.getMembers(guildId, { limit: 100 });
+
     const member = allMembers.filter(member => member.user.username === globalName)[0];
 
     const DMChannel = await api.users.createDM(member.user.id);
@@ -40,7 +37,7 @@ export async function sendDM(globalName, embed) {
  */
 export async function sendEmail(email, action) {
     users.forEach(user => {
-        if (!user['emailNotifs']) {return}
+        if (!user['emailNotifs']) return
     })
     return
 }
@@ -50,14 +47,14 @@ export async function sendEmail(email, action) {
  */
 export async function dmUsers() {
     users.forEach(user => {
-        if (!user['discordNotifs']) {return}
+        if (!user['discordNotifs']) return
 
         const embed = new EmbedBuilder()
 
         if (user['windowOpenEpoch'] <= Date.now() || user['windowCloseEpoch'] <= Date.now()) {
-            let action = (user['windowOpenEpoch'] <= time) ? 'close' : 'open'
-            
-            embed.addFields([ {name : action + "ur windows", value : "!!!"} ])
+            let action = (user['windowOpenEpoch'] <= Date.now()) ? 'close' : 'open'
+
+            embed.addFields([{ name: action + "ur windows", value: "!!!" }])
             sendDM(user['discordUsername'], embed)
         }
 
