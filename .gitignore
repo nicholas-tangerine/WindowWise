@@ -1,0 +1,7 @@
+# IDE files
+.idea
+.vscode
+*~
+
+# Mac config files
+.DS_Store
