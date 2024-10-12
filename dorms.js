@@ -1,5 +1,5 @@
-import config from "./calculator_config.json" with { type: "json" };
-
+import { config } from "dotenv";
+config()
 
 /** The height of a dorm ceiling, in meters. */
 const CEILING_HEIGHT = 2.4384;
@@ -153,5 +153,5 @@ async function getLocationByAddress(address) {
 function getGeocoderEndpoint(address) {
     return "https://maps.googleapis.com/maps/api/geocode/json?" +
         "address=" + address + "&" +
-        "key=" + config.GeocoderKey;
+        "key=" + process.env.GEOCODER_KEY;
 }
