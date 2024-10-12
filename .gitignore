@@ -9,4 +9,6 @@
 # Config files
 calculator_config.json
 .env
+
+# Build files
 node_modules
