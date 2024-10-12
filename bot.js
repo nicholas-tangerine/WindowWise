@@ -15,13 +15,14 @@ let users = data['users']
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 const api = new API(rest);
 
+
 /**
  * send dm given username
  * @param {string} globalName 
  * @param {EmbedBuilder} embed 
  */
 export async function sendDM(globalName, embed) {
-    const allMembers = await api.guilds.getMembers(guildId, { limit: 100 });
+    const allMembers = await api.guilds.getMembers(process.env.GUILD_ID, { limit: 100 });
 
     const member = allMembers.filter(member => member.user.username === globalName)[0];
 
