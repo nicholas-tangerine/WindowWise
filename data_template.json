@@ -1,0 +1,21 @@
+{
+  "users": 
+  [
+    {
+      "username": "aeaea",
+      "lat": "50.0000",
+      "long": "50.0000",
+      "hour": "0",
+      "min": "0",
+      "windowOpen": false,
+      "email": "abc@abc.com",
+      "emailNotifs": false,
+      "discordID": "12312313123123123",
+      "discordNotifs": true
+    }
+  ],
+  "guildIDs":
+  [
+    "1294533411205152858"
+  ]
+}
