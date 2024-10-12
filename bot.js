@@ -1,15 +1,13 @@
 import { config } from "dotenv"
 import { readFileSync, writeFile } from 'fs'
 
-
+//import email stuff 
 
 import { REST } from '@discordjs/rest';
 import { API } from '@discordjs/core';
 import { EmbedBuilder } from "discord.js";
 
 config()
-
-const time = Date.now()
 
 let data = JSON.parse(readFileSync('./data_template.json'))
 let users = data['users']
@@ -21,12 +19,12 @@ const guildID = '1294533411205152858'
 const globalName = 'wqnderalone'
 
 /**
- * 
+ * send dm given username
  * @param {string} globalName 
  * @param {EmbedBuilder} embed 
  */
 export async function sendDM(globalName, embed) {
-    const allMembers = await api.guilds.getMembers(guildId, { limit : 100 });
+    const allMembers = await api.guilds.getMembers(guildID, { limit : 100 });
     
     const member = allMembers.filter(member => member.user.username === globalName)[0];
 
@@ -35,6 +33,11 @@ export async function sendDM(globalName, embed) {
     await api.channels.createMessage(DMChannel.id, { embeds: [embed] });
 }
 
+/**
+ * send email given email addr
+ * @param {string} email email addr
+ * @param {string} action either 'open' or 'close'
+ */
 export async function sendEmail(email, action) {
     users.forEach(user => {
         if (!user['emailNotifs']) {return}
@@ -42,14 +45,16 @@ export async function sendEmail(email, action) {
     return
 }
 
-// check if user needs to be pinged
+/**
+ * runs through user list and dms users if window state needs to be updated
+ */
 export async function dmUsers() {
     users.forEach(user => {
         if (!user['discordNotifs']) {return}
 
         const embed = new EmbedBuilder()
 
-        if (user['windowOpenEpoch'] <= time || user['windowCloseEpoch'] <= time) {
+        if (user['windowOpenEpoch'] <= Date.now() || user['windowCloseEpoch'] <= Date.now()) {
             let action = (user['windowOpenEpoch'] <= time) ? 'close' : 'open'
             
             embed.addFields([ {name : action + "ur windows", value : "!!!"} ])
