@@ -12,3 +12,5 @@ calculator_config.json
 
 # Build files
 node_modules
+__pycache__
+venv
