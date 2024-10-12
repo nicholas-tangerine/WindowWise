@@ -31,7 +31,7 @@ export async function calculateTime(currentTemp,
     longitude,
     roomVolume,
     windowArea,
-    percentError = 0.1) {
+    percentError = 0.01) {
     let now = new Date();
     let weatherData = await getWeatherData(latitude, longitude);
 
