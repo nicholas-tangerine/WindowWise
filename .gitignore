@@ -14,3 +14,4 @@ calculator_config.json
 node_modules
 __pycache__
 venv
+./data.json
