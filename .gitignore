@@ -5,3 +5,6 @@
 
 # Mac config files
 .DS_Store
+
+# Config files
+calculator_config.json
