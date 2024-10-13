@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta chatset="UTF-8">
-    <title>Windows</title>
-  </head>
-  <body>
-    <div id="timeLeft">{{ time_left }}</div>
-    <div id="finalTemp">{{ final_temp }}</div>
-  </body>
+    <head>
+        <meta chatset="UTF-8" />
+        <title>Windows</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            * {
+                font-family: 'Asap';
+                font-size: 1.3vw;
+                color: white;
+            }
+            html {
+                /* background-color: rgb(245, 245, 245); */
+                background: rgb(15, 209, 0);
+                background: linear-gradient(
+                    45deg,
+                    rgba(15, 209, 0, 0.8) 0%,
+                    rgba(9, 9, 121, 0.8) 100%
+                );
+                overflow: hidden;
+            }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="w-screen h-screen flex justify-center items-center">
+            <div
+                class="bg-[#141319] border-[3px] border-[#313131] w-96 h-40 mx-48 p-8 rounded-lg flex flex-col justify-center"
+            >
+                <div class="text-xl text-center">
+                    Estimated Time to Temperature
+                </div>
+                <div id="timeLeft" class="text-4xl mt-4 text-center">
+                    {{ time_left }}
+                </div>
+                <!-- <div id="finalTemp text-center">{{ final_temp }}</div> -->
+            </div>
+        </div>
+    </body>
 </html>
