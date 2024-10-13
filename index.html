@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta chatset="UTF-8">
+    <title>Windows</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <form enctype="multipart/form-data" action="/append" method="post">
+      <input type="text" name="discordUsername" placeholder="Discord username">
+      <input type="text" name="email" placeholder="Email address">
+      <input type="number" min="0" max="50" name="currentTemp" placeholder="Current temperature">
+      <input type="number" min="0" max="50" name="targetTemp" placeholder="Preferred temperature">
+      <select name="college">
+        <option value="Cowell">Cowell</option>
+        <option value="Stevenson">Stevenson</option>
+        <option value="Crown">Crown</option>
+        <option value="Merrill">Merrill</option>
+        <option value="College Nine">College Nine</option>
+        <option value="John R. Lewis">John R. Lewis</option>
+        <option value="Porter">Porter</option>
+        <option value="Kresge">Kresge</option>
+        <option value="Oakes">Oakes</option>
+        <option value="Rachel Carson">Rachel Carson</option>
+      </select>
+      <select name="roomType">
+        <option value="single">Single</option>
+        <option value="double">Double</option>
+        <option value="triple">Triple</option>
+        <option value="large triple">Large Triple</option>
+      </select>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>

@@ -19,21 +19,15 @@ POSTDATA = {
 
 @app.get('/')
 def home():
-  page = Html(
-    Head(Title("Welcome !")),
-    Body(Main(
-      Form(Input(type="text", name = "discordUsername", placeholder="discord username"),
-           Input(type="text", name = "email", placeholder="email"),
-           Input(type="text", name = "currentTemp", placeholder="current temperature (celsius)"),
-           Input(type="text", name = "targetTemp", placeholder="preferred temperature (celsius)"),
-           Input(type="text", name = "college", placeholder="college name (i.e. crown, stevenson, etc.)"),
-           Input(type="text", name = "roomType", placeholder="room type (i.e. single, double, triple, large triple)"),
-           Button("Submit"), 
-           action="/append",
-           method = "post")
-    ))
-  )
-  return page
+  with open("index.html", "r", encoding = "utf-8") as f:
+    content = f.read()
+  return content
+
+@app.get('/style.css')
+def style():
+  with open("style.css", "r", encoding = "utf-8") as f:
+    content = f.read()
+  return content
 
 @app.post('/append')
 def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: str, college: str, roomType: str):
