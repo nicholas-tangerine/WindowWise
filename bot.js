@@ -1,8 +1,7 @@
 import { config } from "dotenv"
-import { readFileSync, writeFile, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 
 import { createTransport } from "nodemailer";
-import { Axios } from "axios";
 
 import { REST } from '@discordjs/rest';
 import { API } from '@discordjs/core';
@@ -48,21 +47,28 @@ export async function sendDM(globalName, embed) {
  * @param {string} message message in addr
  */
 export async function sendEmail(email, message) {
-    let mailoptions = {
-        from: 'closeyourwindow2024@gmail.com',
+    let transporter = createTransport({
+        service: 'Hotmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    })
+    let mailOptions = {
+        from: process.env.EMAIL_USER,
         to: email,
-        subject: 'It\'s time to close your windows!',
+        subject: 'close ur window !',
         text: message
     }
 
-    transporter.sendMail(mailoptions, function (error, info) {
+    transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error)
-        } else {
-            console.log('Email sent: ' + info.response)
+        }
+        else {
+            console.log(info.response)
         }
     })
-    return
 }
 
 export async function emailUsers() {
@@ -70,17 +76,8 @@ export async function emailUsers() {
         if (!user['emailNotifs']) { return }
 
         if (user.epoch < Date.now()) {
-            const result = Axios.POST('https://api.emailjs.com/api/v1.0/email/send', {
-                service_id: 'service_pmwdihq',
-                template_id: 'template_kenp0g9',
-                user_id: 'SwNGZiXeseaEkWuH9',
-                template_params: {
-                    'college': user.college,
-                    'roomType': user.roomType
-                }
-            })
-
-            console.log(result)
+            let message = `Your ${user.college} ${user.roomType} room has reached its desired temperature`
+            sendEmail(user.email, message)
         }
 
     })
