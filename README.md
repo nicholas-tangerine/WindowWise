@@ -22,7 +22,10 @@ WindowWise lets you set temperature alerts by entering the current and preferred
 1. `cd` into working directory
 2. Windows Users:
      - `pip install -r requirements.txt`
-     - doesn't work? try `pip3`
+     - doesn't work?
+          - try `pip3`
+          - make sure python version is between 3.10 and 3.13
+          - may require you to download C++ tools
 3. Start the front end with `python front.py` or `python3 front.py`
 
 # Backend API Setup
