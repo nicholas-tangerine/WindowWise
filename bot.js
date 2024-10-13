@@ -55,11 +55,18 @@ export async function dmUsers() {
         if (user['windowOpenEpoch'] <= Date.now() || user['windowCloseEpoch'] <= Date.now()) {
             let action = (user['windowOpenEpoch'] <= Date.now()) ? 'close' : 'open'
 
-            embed.addFields([{ name: action + "ur windows", value: "!!!" }])
+            embed.addFields([{ name: action + " ur windows", value: "!!!" }])
             sendDM(user['discordUsername'], embed)
         }
+        
 
-        user['windowEpoch'] = '99999999999999999999'
+        if (user['windowOpenEpoch'] <= Date.now()) {
+            user['windowOpenEpoch'] = '99999999999999999999'
+        }
+        if (user['windowCloseEpoch'] <= Date.now()) {
+            user['windowCloseEpoch'] = '99999999999999999999'
+        }
+
         user['windowOpen'] = !user['windowOpen']
     });
 
@@ -68,3 +75,5 @@ export async function dmUsers() {
     //update json
     writeFileSync('./data.json', JSON.stringify(data))
 }
+
+dmUsers()
