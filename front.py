@@ -7,7 +7,7 @@ load_dotenv()
 app = FastHTML()
 
 PORT_SERVER = os.getenv('PORT_SERVER')
-POSTURL = f'https://localhost:{PORT_SERVER}/api/v1/submit'
+POSTURL = f'http://localhost:{PORT_SERVER}/api/v1/submit'
 
 @app.get('/')
 def home():
@@ -23,21 +23,11 @@ def style():
 
 @app.get('/append')
 def goHome():
-  return home
+  return home()
 
 @app.post('/append')
 def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: str, college: str, roomType: str):
   global POSTURL
-  
-  college = college.title()
-  roomType = roomType.lower()
-
-  roomMap = {
-    'single': 0,
-    'double': 1,
-    'triple': 2,
-    'large triple': 3
-  }
 
   d = {
     'discordUsername' : discordUsername,
@@ -45,11 +35,11 @@ def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: s
     'currentTemp': currentTemp,
     'targetTemp': targetTemp,
     'college': college,
-    'roomType': roomMap[roomType]
+    'roomType': roomType
   }
   print(d)
 
-  requests.post(POSTURL, d)
+  print(requests.post(POSTURL, d).content)
 
 
   return home()

@@ -92,7 +92,7 @@ app.post('/api/v1/submit', async (req, res) => {
         discordUsername: discordUsername ?? null,
         discordNotifs: !!discordUsername,
         windowOpenEpoch: Date.now(),
-        windowCloseEpoch: result.time * 1000
+        windowCloseEpoch: result !== undefined ? result.time * 1000 : undefined
     })
 
     // Write data to file
