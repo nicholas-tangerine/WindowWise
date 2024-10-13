@@ -3,14 +3,19 @@
   <head>
     <meta chatset="UTF-8">
     <title>Windows</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      input {
+          font-family: "Times New Roman";
+          border-color:red;
+      }
+    </style>
   </head>
   <body>
     <form enctype="multipart/form-data" action="/append" method="post">
       <input type="text" name="discordUsername" placeholder="Discord username">
       <input type="text" name="email" placeholder="Email address">
-      <input type="number" min="0" max="50" name="currentTemp" placeholder="Current temperature">
-      <input type="number" min="0" max="50" name="targetTemp" placeholder="Preferred temperature">
+      <input type="number" min="0" max="150" name="currentTemp" placeholder="Current temperature">
+      <input type="number" min="0" max="150" name="targetTemp" placeholder="Preferred temperature">
       <select name="college">
         <option value="Cowell">Cowell</option>
         <option value="Stevenson">Stevenson</option>
@@ -24,10 +29,10 @@
         <option value="Rachel Carson">Rachel Carson</option>
       </select>
       <select name="roomType">
-        <option value="single">Single</option>
-        <option value="double">Double</option>
-        <option value="triple">Triple</option>
-        <option value="large triple">Large Triple</option>
+        <option value="Single">Single</option>
+        <option value="Double">Double</option>
+        <option value="Triple">Triple</option>
+        <option value="Large Triple">Large Triple</option>
       </select>
       <button>Submit</button>
     </form>
