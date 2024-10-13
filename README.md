@@ -14,10 +14,10 @@ Team members include Jonathan Uhler, Nicholas Tang, and Sean Goudie.
 
 ## Installation
 
--    `cd` into working directory
--    Windows Users:
+1. `cd` into working directory
+2. Windows Users:
      - `pip install -r requirements.txt`
--    Mac/Unix/Linux:
+3. Mac/Unix/Linux:
      - `pip3 install -r requirements.txt`
 
 # Backend API Setup
