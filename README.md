@@ -19,6 +19,7 @@ Team members include Jonathan Uhler, Nicholas Tang, and Sean Goudie.
      - `pip install -r requirements.txt`
 3. Mac/Unix/Linux:
      - `pip3 install -r requirements.txt`
+4. Start the front end with `python front.py` or `python3 front.py`
 
 # Backend API Setup
 
