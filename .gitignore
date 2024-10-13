@@ -15,3 +15,6 @@ node_modules
 __pycache__
 venv
 ./data.json
+
+# Misc
+temp*
