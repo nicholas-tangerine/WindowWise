@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 app = FastHTML()
 
-PORT = os.getenv('PORT')
-POSTURL = f'https://localhost:3004/api/v1/submit'
+PORT = os.getenv('PORT_SERVER')
+POSTURL = f'https://localhost:{PORT}/api/v1/submit'
 POSTDATA = {
   'discordUsername': 'wqnderalone',
   'email': 'abc@abc.com',

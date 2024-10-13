@@ -109,6 +109,6 @@ setInterval(() => {
 
 
 // Run API on http://localhost:PORT
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(process.env.PORT_SERVER, () => {
+    console.log(`Server is running on port ${process.env.PORT_SERVER}`);
 })
