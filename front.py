@@ -8,14 +8,6 @@ app = FastHTML()
 
 PORT = os.getenv('PORT_SERVER')
 POSTURL = f'https://localhost:{PORT}/api/v1/submit'
-POSTDATA = {
-  'discordUsername': 'wqnderalone',
-  'email': 'abc@abc.com',
-  'currentTemp': '50',
-  'targetTemp': '45',
-  'college': 'Crown',
-  'roomType': 3
-}
 
 @app.get('/')
 def home():
