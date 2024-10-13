@@ -76,8 +76,8 @@ app.post('/api/v1/submit', async (req, res) => {
     let data = await JSON.parse(readFileSync('./data.json'))
 
     // Check if user already exists to eliminate duplicates, if so return error
-    if (data.users?.filter(user => user.discordUsername === discordUsername).length)
-        return res.json({ success: false, error: 'User already exists' })
+    // if (data.users?.filter(user => user.discordUsername === discordUsername).length)
+    //     return res.json({ success: false, error: 'User already exists' })
 
     if (!result?.time) return res.json({ success: false, error: 'Failed to calculate' })
     // Add user to data
