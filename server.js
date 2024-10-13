@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
  * @return
  */
 function collegeToEnum(college) {
-    switch (college) {
+    switch (college.trim()) {
         case 'Cowell':
             return 0;
         case 'Stevenson':
@@ -48,7 +48,7 @@ function collegeToEnum(college) {
     }
 }
 function roomToEnum(roomType) {
-    switch (roomType) {
+    switch (roomType.trim()) {
         case 'Single':
             return 0;
         case 'Double':
