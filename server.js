@@ -103,7 +103,6 @@ app.post('/api/v1/submit', async (req, res) => {
 setInterval(() => {
     console.log('Checking users')
     dmUsers()
-    emailUsers()
 }, 7_500);
 
 

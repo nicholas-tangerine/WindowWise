@@ -61,7 +61,6 @@ export async function sendEmail(email, message) {
         text: message
     }
 
-    transporter.sendMail(mailoptions, function (error, info) {
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error)
