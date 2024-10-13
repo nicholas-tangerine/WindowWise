@@ -103,6 +103,7 @@ export async function dmUsers() {
             embed.setAuthor({ name: 'WindowWise' })
                 .setTitle(`It's time to close your windows!`)
                 .setThumbnail(`https://i.imgur.com/UXbPmV2.png`)
+                .setColor('#5ddeec')
                 .setDescription(`Your ${user.college} ${user.roomType} room has reached its desired temperature.`)
             sendDM(user.username, embed)
             users = users.filter(u => u.username != user.username)
