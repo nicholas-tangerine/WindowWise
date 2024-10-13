@@ -1,6 +1,6 @@
 # acmhacks2024
 
-# WindowsWise
+# WindowWise
 
 This project was conceptualized and developed in a 40 hour window.
 Entry for UCSC's ACMHacks 2024 Hackathon.
@@ -10,7 +10,15 @@ Team members include Jonathan Uhler, Nicholas Tang, and Sean Goudie.
 
 ## Prerequisites
 
--
+-    Python 3.10 or later
+
+## Installation
+
+-    `cd` into working directory
+-    Windows Users:
+     - `pip install -r requirements.txt`
+-    Mac/Unix/Linux:
+     - `pip3 install -r requirements.txt`
 
 # Backend API Setup
 
