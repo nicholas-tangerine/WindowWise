@@ -1,6 +1,7 @@
 from fasthtml.common import *
 import requests
-
+import json
+import re
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,6 +16,34 @@ def home():
     content = f.read()
   return content
 
+
+def results(data: dict):
+  units: str = "second"
+  time_left: int = data["time"]
+  if (time_left > 60):
+    units = "minute"
+    time_left //= 60
+    if (time_left > 60):
+      units = "hour"
+      time_left //= 60
+  plurality: str = "" if time_left == 1 else "s"
+  final_temp: float = int(9 / 5 * data["finalTemp"] + 32)
+
+  with open("result.html", "r", encoding = "utf-8") as f:
+    content = f.read()
+
+  content = re.sub("{{ time_left }}", f"{time_left} {units}{plurality}", content)
+  content = re.sub("{{ final_temp }}", f"{final_temp} °F", content)
+
+  return content
+
+
+def failure(message: str):
+  with open("error.html", "r", encoding = "utf-8") as f:
+    content = f.read()
+  return content
+
+
 @app.post('/append')
 def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: str, college: str, roomType: str):
   global POSTURL
@@ -27,11 +56,11 @@ def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: s
     'college': college,
     'roomType': roomType
   }
-  print(d)
 
-  print(requests.post(POSTURL, d).content)
-
-
-  return home()
+  response: str = requests.post(POSTURL, d).content.decode("utf-8")
+  response_json: dict = json.loads(response)
+  if (not response_json["success"]):
+    return failure(response_json["message"])
+  return results(response_json["data"])
 
 serve()
