@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
  * @return
  */
 function collegeToEnum(college) {
-    switch (college.trim()) {
+    switch (college) {
         case 'Cowell':
             return 0;
         case 'Stevenson':
@@ -48,7 +48,7 @@ function collegeToEnum(college) {
     }
 }
 function roomToEnum(roomType) {
-    switch (roomType.trim()) {
+    switch (roomType) {
         case 'Single':
             return 0;
         case 'Double':
@@ -68,7 +68,7 @@ function fahrenheitToCelsius(f) {
 app.post('/api/v1/submit', async (req, res) => {
     const { discordUsername, email, currentTemp, targetTemp, college, roomType } = req.body;
 
-    const dormParameters = getDormParameters(collegeToEnum(college), roomToEnum(roomType));
+    const dormParameters = getDormParameters(collegeToEnum(college.trim()), roomToEnum(roomType.trim()));
     console.log(fahrenheitToCelsius(currentTemp), fahrenheitToCelsius(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea)
     const result = await calculateTime(fahrenheitToCelsius(currentTemp), fahrenheitToCelsius(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea, 0.10)
     console.log(result)
