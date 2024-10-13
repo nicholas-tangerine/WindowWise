@@ -10,7 +10,7 @@ Team members include Jonathan Uhler, Nicholas Tang, and Sean Goudie.
 
 ## Prerequisites
 
--    Python 3.10 or later
+-    Python 3.10 or later (3.13 not supported yet)
 
 ## Installation
 
