@@ -6,10 +6,10 @@ Entry for UCSC's ACMHacks 2024 Hackathon.
 Team members include Jonathan Uhler, Nicholas Tang, and Sean Goudie.
 
 ## Inspiration
-As advocates for a more sustainable future, we believe that excessive energy consumption from household climate control systems is a significant, yet easily preventable issue affecting millions of ordinary people. We were inspired to create WindowWise as a tool that provides individuals with easy-to-understand data about how they can responsibly utilize natural processes to their advantage.
+As advocates for a sustainable future, we created WindowWise to help individuals reduce HVAC energy consumption by providing simple data on how to use natural cooling processes efficiently.
 
 ## What It Does
-WindowWise provides a simple interface to create temperature alerts. You enter the current temperature of a room, your preferred temperature, and through our atmospheric simulation, we tell you how long to keep your windows open to reach the desired temperature. You'll receive a Discord or email notification reminding you to close the windows when it's time. This allows you to limit your use of air conditioning systems, when your room can be cooled by the ambient air alone.
+WindowWise lets you set temperature alerts by entering the current and preferred room temperatures. It uses atmospheric simulation to tell you how long to keep windows open, sending Discord or email reminders to close them, reducing the need for air conditioning.
 
 # Frontend Setup
 
