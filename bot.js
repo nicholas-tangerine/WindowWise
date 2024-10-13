@@ -50,32 +50,20 @@ export async function dmUsers() {
 
     let data = JSON.parse(readFileSync('./data.json'))
     let users = data['users']
-
+    console.log('Found users:', users)
     users.forEach(user => {
-        if (!user['discordNotifs']) return
-
+        if (!user?.username) return // No discord username submitted
         const embed = new EmbedBuilder()
 
-        if (user['windowOpenEpoch'] <= Date.now() || user['windowCloseEpoch'] <= Date.now()) {
-            let action = (user['windowOpenEpoch'] <= Date.now()) ? 'close' : 'open'
-
-            user['windowOpen'] = !user['windowOpen']
-
-            embed.addFields([{ name: action + " ur windows", value: "!!!" }])
-            sendDM(user['discordUsername'], embed)
-        }
-
-
-        if (user['windowOpenEpoch'] <= Date.now()) {
-            users = users.filter(u => u.discordUsername != user.discordUsername)
-        }
-        if (user['windowCloseEpoch'] <= Date.now()) {
-            users = users.filter(u => u.discordUsername != user.discordUsername)
-        }
-
+        if (user.epoch < Date.now()) {
+            console.log('Telling', user.username, 'to close their windows')
+            embed.addFields([{ name: "close ur windows", value: "!!!" }])
+            sendDM(user.username, embed)
+            users = users.filter(u => u.username != user.username)
+        } else console.log('Not telling', user.username, 'to close their windows')
     });
 
-    data['users'] = users
+    data.users = users
 
     //update json
     writeFileSync('./data.json', JSON.stringify(data))

@@ -82,17 +82,11 @@ app.post('/api/v1/submit', async (req, res) => {
     if (!result?.time) return res.json({ success: false, error: 'Failed to calculate' })
     // Add user to data
     data.users.push({
-        lat: dormParameters.latitude,
-        long: dormParameters.longitude,
-        hour: 0,
-        minute: 0,
-        windowOpen: true,
         email: email ?? null,
-        emailNotifs: !!email,
-        discordUsername: discordUsername ?? null,
-        discordNotifs: !!discordUsername,
-        windowOpenEpoch: Date.now(),
-        windowCloseEpoch: result !== undefined ? result.time * 1000 : undefined
+        username: discordUsername.toLowerCase() ?? null,
+        college: college,
+        roomType: roomType,
+        epoch: Date.now() + (result.time * 1000),
     })
 
     // Write data to file
@@ -107,6 +101,7 @@ app.post('/api/v1/submit', async (req, res) => {
 
 // Check if user needs to be notified every 15s
 setInterval(() => {
+    console.log('Checking users')
     dmUsers()
 }, 7_500);
 
