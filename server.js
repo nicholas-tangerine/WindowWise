@@ -59,8 +59,8 @@ function roomToEnum(roomType) {
             return 3;
     }
 }
-function celsiusToFahrenheit(celsius) {
-    return celsius * 9 / 5 + 32;
+function fahrenheitToCelsius(f) {
+    return f - 32 * 5 / 9
 }
 
 // API endpoint for submitting data
@@ -69,7 +69,7 @@ app.post('/api/v1/submit', async (req, res) => {
     const { discordUsername, email, currentTemp, targetTemp, college, roomType } = req.body;
 
     const dormParameters = getDormParameters(collegeToEnum(college), roomToEnum(roomType));
-    console.log(celsiusToFahrenheit(currentTemp), celsiusToFahrenheit(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea)
+    console.log(fahrenheitToCelsius(currentTemp), fahrenheitToCelsius(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea)
     const result = await calculateTime(currentTemp, targetTemp, dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea, 0.01)
     console.log(result)
 
@@ -80,6 +80,7 @@ app.post('/api/v1/submit', async (req, res) => {
     if (data.users?.filter(user => user.discordUsername === discordUsername).length)
         return res.json({ success: false, error: 'User already exists' })
 
+    if (!result.time) return res.json({ success: false, error: 'Failed to calculate' })
     // Add user to data
     data.users.push({
         lat: dormParameters.latitude,
