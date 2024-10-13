@@ -61,6 +61,7 @@ export async function sendEmail(email, message) {
         text: message
     }
 
+    transporter.sendMail(mailoptions, function (error, info) {
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error)
@@ -73,8 +74,8 @@ export async function sendEmail(email, message) {
 
 export async function emailUsers() {
     users.forEach(user => {
-        if (!user['emailNotifs']) {return}
-        
+        if (!user['emailNotifs']) { return }
+
         if (user.epoch < Date.now()) {
             let message = `Your ${user.college} ${user.roomType} room has reached its desired temperature`
             sendEmail(user.email, message)
@@ -97,8 +98,9 @@ export async function dmUsers() {
 
         if (user.epoch < Date.now()) {
             console.log('Telling', user.username, 'to close their windows')
-            embed.setAuthor({ name: 'Windows' })
+            embed.setAuthor({ name: 'WindowWise' })
                 .setTitle(`It's time to close your windows!`)
+                .setThumbnail(`https://i.imgur.com/UXbPmV2.png`)
                 .setDescription(`Your ${user.college} ${user.roomType} room has reached its desired temperature.`)
             sendDM(user.username, embed)
             users = users.filter(u => u.username != user.username)
