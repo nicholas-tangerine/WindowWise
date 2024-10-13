@@ -6,16 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 app = FastHTML()
 
-PORT = os.getenv('PORT')
-POSTURL = f'https://localhost:{PORT}/api/v1/submit'
-POSTDATA = {
-  'discordUsername': 'wqnderalone',
-  'email': 'abc@abc.com',
-  'currentTemp': '50',
-  'targetTemp': '45',
-  'college': 'Crown',
-  'roomType': 3
-}
+PORT_SERVER = os.getenv('PORT_SERVER')
+POSTURL = f'https://localhost:{PORT_SERVER}/api/v1/submit'
 
 @app.get('/')
 def home():
@@ -28,6 +20,10 @@ def style():
   with open("style.css", "r", encoding = "utf-8") as f:
     content = f.read()
   return content
+
+@app.get('/append')
+def goHome():
+  return home
 
 @app.post('/append')
 def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: str, college: str, roomType: str):
@@ -51,8 +47,10 @@ def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: s
     'college': college,
     'roomType': roomMap[roomType]
   }
+  print(d)
 
   requests.post(POSTURL, d)
+
 
   return home()
 

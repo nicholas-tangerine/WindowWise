@@ -1,5 +1,5 @@
 import { config } from "dotenv"
-import { readFileSync, writeFile } from 'fs'
+import { readFileSync, writeFile, writeFileSync } from 'fs'
 
 //import email stuff 
 
@@ -9,7 +9,7 @@ import { EmbedBuilder } from "discord.js";
 
 config()
 
-let data = JSON.parse(readFileSync('./data_template.json'))
+let data = JSON.parse(readFileSync('./data.json'))
 let users = data['users']
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
@@ -55,16 +55,25 @@ export async function dmUsers() {
         if (user['windowOpenEpoch'] <= Date.now() || user['windowCloseEpoch'] <= Date.now()) {
             let action = (user['windowOpenEpoch'] <= Date.now()) ? 'close' : 'open'
 
-            embed.addFields([{ name: action + "ur windows", value: "!!!" }])
+            embed.addFields([{ name: action + " ur windows", value: "!!!" }])
             sendDM(user['discordUsername'], embed)
         }
+        
 
-        user['windowEpoch'] = '99999999999999999999'
+        if (user['windowOpenEpoch'] <= Date.now()) {
+            user['windowOpenEpoch'] = '99999999999999999999'
+        }
+        if (user['windowCloseEpoch'] <= Date.now()) {
+            user['windowCloseEpoch'] = '99999999999999999999'
+        }
+
         user['windowOpen'] = !user['windowOpen']
     });
 
     data['users'] = users
 
     //update json
-    writeFile('./data_template.json', JSON.stringify(data))
+    writeFileSync('./data.json', JSON.stringify(data))
 }
+
+dmUsers()
