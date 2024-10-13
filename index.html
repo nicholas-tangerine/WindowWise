@@ -63,7 +63,6 @@
             }
             #appTitle {
                 font-size: 8vh;
-                margin-bottom: 0.5rem;
             }
         </style>
         <script src="https://cdn.tailwindcss.com"></script>
@@ -75,9 +74,9 @@
         />
     </head>
     <body>
-        <div class="bg w-screen h-screen mt-16">
+        <div class="bg w-screen h-screen mt-8">
             <div
-                class="rounded-lg bg-[#141319] mx-72 border-[3px] border-[#313131]"
+                class="rounded-lg bg-[#141319] mx-96 border-[3px] border-[#313131] backdrop-blur-3xl"
             >
                 <form
                     id="form"
@@ -85,7 +84,15 @@
                     action="/append"
                     method="post"
                 >
+                    <img
+                        src="https://i.imgur.com/UXbPmV2.png"
+                        alt="Logo"
+                        class="aspect-square w-32"
+                    />
                     <div id="appTitle">WindowWise</div>
+                    <p class="mb-4">
+                        The sustainable alternative to air conditioning
+                    </p>
                     <div class="title">Contact</div>
                     <div class="flex px-4 gap-3">
                         <div class="">
@@ -159,6 +166,12 @@
                         Calculate Time
                     </button>
                 </form>
+            </div>
+            <div class="w-full flex justify-center absolute bottom-0">
+                <p class="text-sm">
+                    Built for UCSC ACMHacks 2024 Hackathon by Jonathan Uhler,
+                    Nicholas Tang, and Sean Goudie
+                </p>
             </div>
         </div>
     </body>
