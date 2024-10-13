@@ -57,7 +57,9 @@ export async function dmUsers() {
 
         if (user.epoch < Date.now()) {
             console.log('Telling', user.username, 'to close their windows')
-            embed.addFields([{ name: "close ur windows", value: "!!!" }])
+            embed.setAuthor({ name: 'Windows' })
+                .setTitle(`It's time to close your windows!`)
+                .setDescription(`Your ${user.college} ${user.roomType} room has reached its desired temperature.`)
             sendDM(user.username, embed)
             users = users.filter(u => u.username != user.username)
         } else console.log('Not telling', user.username, 'to close their windows')
