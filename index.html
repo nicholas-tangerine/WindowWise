@@ -1,109 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta chatset="UTF-8">
-    <title>Windows</title>
-    <style>
-      * {
-          font-family: "Lexend Deca", sans-serif;
-          font-size: 1.5vw;
-      }
-      body {
-          background-color: rgb(245, 245, 245);
-      }
-      input {
-          background: rgb(220, 220, 220);
-          color: black;
-          border-radius: 6px;
-          border-style: solid;
-          border-width: 1px;
-          border-color: rgb(220, 220, 220);
-          width: 20vw;
-          padding: 0.5vw 0.5vh;
-      }
-      button {
-          background: rgb(245, 245, 245);
-          color: black;
-          transition-duration: 0.1s;
-          cursor: pointer;
-          border-radius: 6px;
-          border-style: solid;
-          border-width: 3px;
-          border-color: rgb(200, 200, 200);
-          padding: 1vw 1vh;
-          font-size: 4vh;
-      }
-      button:hover {
-          background: rgb(200, 200, 200);
-      }
-      select {
-          background: rgb(230, 230, 230);
-          color: black;
-          border-radius: 6px;
-          border-style: solid;
-          border-width: 1px;
-          border-color: rgb(230, 230, 230);
-          padding: 0.5vw 0.5vh;
-      }
-      #form {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-      }
-      .info {
-          padding: 1vw 1vh;
-      }
-      .title {
-          font-size: 5vh;
-          margin-bottom: 1vh;
-      }
-      #calculateTime {
-          padding: 3vw 3vh;
-      }
-      #appTitle {
-          font-size: 8vh;
-          margin-bottom: 6vh;
-      }
-    </style>
-  </head>
-  <body>
-    <form id="form" enctype="multipart/form-data" action="/append" method="post">
-    <div id="appTitle">AMAZING TITLE HERE</div>
-      <div class="title">Contact</div>
-      <div class="info">
-        <input id="discordUsername" type="text" name="discordUsername" placeholder="Discord username">
-        <input id="email" type="text" name="email" placeholder="Email address">
-      </div>
-      <div class="title">Temperature</div>
-      <div class="info">
-        <input id="currentTemp" type="number" min="0" max="150" name="currentTemp" placeholder="Current temperature">
-        <input id="targetTemp" type="number" min="0" max="150" name="targetTemp" placeholder="Preferred temperature">
-      </div>
-      <div class="title">Location</div>
-      <div class="info">
-        <select id="college" name="college">
-          <option value="Cowell">Cowell</option>
-          <option value="Stevenson">Stevenson</option>
-          <option value="Crown">Crown</option>
-          <option value="Merrill">Merrill</option>
-          <option value="College Nine">College Nine</option>
-          <option value="John R. Lewis">John R. Lewis</option>
-          <option value="Porter">Porter</option>
-          <option value="Kresge">Kresge</option>
-          <option value="Oakes">Oakes</option>
-          <option value="Rachel Carson">Rachel Carson</option>
-        </select>
-        <select id="roomType" name="roomType">
-          <option value="Single">Single</option>
-          <option value="Double">Double</option>
-          <option value="Triple">Triple</option>
-          <option value="Large Triple">Large Triple</option>
-        </select>
-      </div>
-      <div id="calculateTime">
-        <button>Calculate Time</button>
-      </div>
-    </form>
-  </body>
+    <head>
+        <meta chatset="UTF-8" />
+        <title>Windows</title>
+        <style>
+            * {
+                font-family: 'Asap';
+                font-size: 1.3vw;
+                color: white;
+            }
+            html {
+                /* background-color: rgb(245, 245, 245); */
+                background: rgb(15, 209, 0);
+                background: linear-gradient(
+                    45deg,
+                    rgba(15, 209, 0, 0.8) 0%,
+                    rgba(9, 9, 121, 0.8) 100%
+                );
+                overflow: hidden;
+            }
+
+            input {
+                background: #0a090f;
+                border-radius: 6px;
+                border-style: solid;
+                border-width: 1px;
+                border-color: #313131;
+                width: 15vw;
+                padding: 0.5vw 0.5vh;
+            }
+            button {
+                background: rgb(245, 245, 245);
+                color: black;
+                transition-duration: 0.1s;
+                cursor: pointer;
+                border-radius: 6px;
+                border-style: solid;
+                border-width: 3px;
+                border-color: rgb(200, 200, 200);
+                padding: 1vw 1vh;
+                font-size: 4vh;
+            }
+            button:hover {
+                background: rgb(200, 200, 200);
+            }
+            select {
+                background: #0a090f;
+                border-radius: 6px;
+                border-width: 1px;
+                border-color: #313131;
+                padding: 0.5vw 0.5vh;
+            }
+            #form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+            #appTitle {
+                font-size: 8vh;
+                margin-bottom: 0.5rem;
+            }
+        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="bg w-screen h-screen mt-16">
+            <div
+                class="rounded-lg bg-[#141319] mx-48 border-[3px] border-[#313131]"
+            >
+                <form
+                    id="form"
+                    enctype="multipart/form-data"
+                    action="/append"
+                    method="post"
+                >
+                    <div id="appTitle">America #1 RAAA 🦅🦅🦅</div>
+                    <div class="title">Contact</div>
+                    <div class="flex px-4 gap-3">
+                        <div class="">
+                            <label for="discordUsername" class="block text-xs"
+                                >Discord Username</label
+                            >
+                            <input
+                                id="discordUsername"
+                                type="text"
+                                name="discordUsername"
+                            />
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs"
+                                >Email Address</label
+                            >
+                            <input id="email" type="text" name="email" />
+                        </div>
+                    </div>
+                    <div class="title mt-4">Temperature</div>
+                    <div class="flex px-4 gap-3">
+                        <div>
+                            <label for="currentTemp" class="block text-xs"
+                                >Current Room Temperature</label
+                            >
+                            <input
+                                id="currentTemp"
+                                type="number"
+                                min="0"
+                                max="5000"
+                                name="currentTemp"
+                            />
+                        </div>
+                        <div>
+                            <label for="targetTemp" class="block text-xs"
+                                >Preferred Temperature</label
+                            >
+                            <input
+                                id="targetTemp"
+                                type="number"
+                                min="0"
+                                max="150"
+                                name="targetTemp"
+                            />
+                        </div>
+                    </div>
+                    <div class="title mt-4">Location</div>
+                    <div class="flex px-4 gap-3">
+                        <select id="college" name="college">
+                            <option value="Cowell">Cowell</option>
+                            <option value="Stevenson">Stevenson</option>
+                            <option value="Crown">Crown</option>
+                            <option value="Merrill">Merrill</option>
+                            <option value="College Nine">College Nine</option>
+                            <option value="John R. Lewis">John R. Lewis</option>
+                            <option value="Porter">Porter</option>
+                            <option value="Kresge">Kresge</option>
+                            <option value="Oakes">Oakes</option>
+                            <option value="Rachel Carson">Rachel Carson</option>
+                        </select>
+                        <select id="roomType" name="roomType">
+                            <option value="Single">Single</option>
+                            <option value="Double">Double</option>
+                            <option value="Triple">Triple</option>
+                            <option value="Large Triple">Large Triple</option>
+                        </select>
+                    </div>
+                    <button
+                        class="mt-6 px-4 py-2 mb-6 bg-[#3a4090] border-[3px] border-[#313131] rounded-xl"
+                    >
+                        Calculate Time
+                    </button>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>
