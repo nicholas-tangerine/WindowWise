@@ -68,7 +68,7 @@ function fahrenheitToCelsius(f) {
 app.post('/api/v1/submit', async (req, res) => {
     const { discordUsername, email, currentTemp, targetTemp, college, roomType } = req.body;
 
-    const dormParameters = getDormParameters(collegeToEnum(college.trim()), roomToEnum(roomType.trim()));
+    const dormParameters = getDormParameters(collegeToEnum(college), roomToEnum(roomType));
     console.log(fahrenheitToCelsius(currentTemp), fahrenheitToCelsius(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea)
     const result = await calculateTime(fahrenheitToCelsius(currentTemp), fahrenheitToCelsius(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea, 0.10)
     console.log(result)
