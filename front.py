@@ -15,14 +15,8 @@ def home():
     content = f.read()
   return content
 
-@app.get('/style.css')
-def style():
-  with open("style.css", "r", encoding = "utf-8") as f:
-    content = f.read()
-  return content
-
 @app.post('/append')
-def formatPOST(discordUsername, email, currentTemp, targetTemp, college, roomType):
+def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: str, college: str, roomType: str):
   global POSTURL
 
   d = {
