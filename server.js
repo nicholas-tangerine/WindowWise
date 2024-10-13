@@ -59,6 +59,9 @@ function roomToEnum(roomType) {
             return 3;
     }
 }
+function celsiusToFahrenheit(celsius) {
+    return celsius * 9 / 5 + 32;
+}
 
 // API endpoint for submitting data
 // POST http://localhost:PORT/api/v1/submit
@@ -66,7 +69,7 @@ app.post('/api/v1/submit', async (req, res) => {
     const { discordUsername, email, currentTemp, targetTemp, college, roomType } = req.body;
 
     const dormParameters = getDormParameters(collegeToEnum(college), roomToEnum(roomType));
-    console.log(currentTemp, targetTemp, dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea)
+    console.log(celsiusToFahrenheit(currentTemp), celsiusToFahrenheit(targetTemp), dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea)
     const result = await calculateTime(currentTemp, targetTemp, dormParameters.latitude, dormParameters.longitude, dormParameters.roomVolume, dormParameters.windowArea, 0.01)
     console.log(result)
 
