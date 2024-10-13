@@ -26,7 +26,7 @@ def goHome():
   return home()
 
 @app.post('/append')
-def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: str, college: str, roomType: str):
+def formatPOST(discordUsername, email, currentTemp, targetTemp, college, roomType):
   global POSTURL
 
   d = {

@@ -9,7 +9,7 @@ import { EmbedBuilder } from "discord.js";
 
 config()
 
-let data = JSON.parse(readFileSync('./data.json'))
+let data = JSON.parse(readFileSync('./data_template.json'))
 let users = data['users']
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
@@ -47,6 +47,10 @@ export async function sendEmail(email, action) {
  * runs through user list and dms users if window state needs to be updated
  */
 export async function dmUsers() {
+
+    let data = JSON.parse(readFileSync('./data.json'))
+    let users = data['users']
+
     users.forEach(user => {
         if (!user['discordNotifs']) return
 
