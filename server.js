@@ -80,7 +80,7 @@ app.post('/api/v1/submit', async (req, res) => {
     if (data.users?.filter(user => user.discordUsername === discordUsername).length)
         return res.json({ success: false, error: 'User already exists' })
 
-    if (!result.time) return res.json({ success: false, error: 'Failed to calculate' })
+    if (!result?.time) return res.json({ success: false, error: 'Failed to calculate' })
     // Add user to data
     data.users.push({
         lat: dormParameters.latitude,
