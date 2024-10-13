@@ -17,7 +17,15 @@ def home():
   return content
 
 
-def results(data: dict):
+def results(data):
+  with open("result.html", "r", encoding = "utf-8") as f:
+    content = f.read()
+
+  if (isinstance(data, str)):
+    content = re.sub("{{ time_left }}", data, content)
+    content = re.sub("{{ final_temp }}", "", content)
+    return content
+    
   units: str = "second"
   time_left: int = data["time"]
   if (time_left > 60):
@@ -29,12 +37,8 @@ def results(data: dict):
   plurality: str = "" if time_left == 1 else "s"
   final_temp: float = int(9 / 5 * data["finalTemp"] + 32)
 
-  with open("result.html", "r", encoding = "utf-8") as f:
-    content = f.read()
-
   content = re.sub("{{ time_left }}", f"{time_left} {units}{plurality}", content)
   content = re.sub("{{ final_temp }}", f"{final_temp} °F", content)
-
   return content
 
 
@@ -60,7 +64,7 @@ def formatPOST(discordUsername: str, email: str, currentTemp: str, targetTemp: s
   response: str = requests.post(POSTURL, d).content.decode("utf-8")
   response_json: dict = json.loads(response)
   if (not response_json["success"]):
-    return failure(response_json["message"])
+    return results("Cannot reach target temperature.")
   return results(response_json["data"])
 
 serve()
