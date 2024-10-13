@@ -1,5 +1,5 @@
 import { config } from "dotenv"
-import { readFileSync, writeFile, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 
 import { createTransport } from "nodemailer";
 
