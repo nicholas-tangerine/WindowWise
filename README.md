@@ -22,9 +22,8 @@ WindowWise lets you set temperature alerts by entering the current and preferred
 1. `cd` into working directory
 2. Windows Users:
      - `pip install -r requirements.txt`
-3. Mac/Unix/Linux:
-     - `pip3 install -r requirements.txt`
-4. Start the front end with `python front.py` or `python3 front.py`
+     - doesn't work? try `pip3`
+3. Start the front end with `python front.py` or `python3 front.py`
 
 # Backend API Setup
 
