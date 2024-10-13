@@ -60,7 +60,7 @@ function roomToEnum(roomType) {
     }
 }
 function fahrenheitToCelsius(f) {
-    return f - 32 * 5 / 9
+    return (f - 32) * 5 / 9
 }
 
 // API endpoint for submitting data
