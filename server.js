@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
  * @return
  */
 function collegeToEnum(college) {
-    switch (college) {
+    switch (college.trim()) {
         case 'Cowell':
             return 0;
         case 'Stevenson':
@@ -48,7 +48,7 @@ function collegeToEnum(college) {
     }
 }
 function roomToEnum(roomType) {
-    switch (roomType) {
+    switch (roomType.trim()) {
         case 'Single':
             return 0;
         case 'Double':
@@ -105,7 +105,7 @@ app.post('/api/v1/submit', async (req, res) => {
 // Check if user needs to be notified every 15s
 setInterval(() => {
     dmUsers()
-}, 15_000);
+}, 1);
 
 
 // Run API on http://localhost:PORT
