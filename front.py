@@ -21,19 +21,13 @@ def style():
     content = f.read()
   return content
 
+@app.get('/append')
+def goHome():
+  return home()
+
 @app.post('/append')
 def formatPOST(discordUsername, email, currentTemp, targetTemp, college, roomType):
   global POSTURL
-  
-  college = college.title()
-  roomType = roomType.lower()
-
-  roomMap = {
-    'single': 0,
-    'double': 1,
-    'triple': 2,
-    'large triple': 3
-  }
 
   d = {
     'discordUsername' : discordUsername,
@@ -41,11 +35,11 @@ def formatPOST(discordUsername, email, currentTemp, targetTemp, college, roomTyp
     'currentTemp': currentTemp,
     'targetTemp': targetTemp,
     'college': college,
-    'roomType': roomMap[roomType]
+    'roomType': roomType
   }
   print(d)
 
-  requests.post(POSTURL, d)
+  print(requests.post(POSTURL, d).content)
 
 
   return home()
