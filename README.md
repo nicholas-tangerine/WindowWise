@@ -1,6 +1,6 @@
 # acmhacks2024
 
-# WindowWise
+## WindowWise
 This project was conceptualized and developed in a 40 hour window.
 Entry for UCSC's ACMHacks 2024 Hackathon.
 Team members include Jonathan Uhler, Nicholas Tang, and Sean Goudie.
