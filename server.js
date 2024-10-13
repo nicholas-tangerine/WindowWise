@@ -105,7 +105,7 @@ app.post('/api/v1/submit', async (req, res) => {
 // Check if user needs to be notified every 15s
 setInterval(() => {
     dmUsers()
-}, 1);
+}, 7_500);
 
 
 // Run API on http://localhost:PORT
