@@ -1,1 +1,10 @@
-{"users":[{"lat":"50.0000","long":"50.0000","hour":"0","min":"0","windowOpen":true,"email":"abc@abc.com","emailNotifs":false,"discordUsername":"wqnderalone","discordNotifs":true,"windowOpenEpoch":"1728759588142","windowCloseEpoch":"9999999999999"}],"guildIDs":["1294533411205152858"]}
+{
+    "users": [
+        {
+            "email": "abc@abc.com",
+            "username": "flqsh",
+            "epoch": "1728759588142"
+        }
+    ],
+    "guildIDs": ["1294533411205152858"]
+}
