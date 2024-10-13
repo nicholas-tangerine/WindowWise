@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import { readFileSync, writeFile, writeFileSync } from 'fs'
 import { calculateTime } from './calculator.js'
 import { getDormParameters } from './dorms.js'
-import { dmUsers, sendDM, sendEmail } from './bot.js'
+import { dmUsers, sendDM, sendEmail, emailUsers } from './bot.js'
 import { config } from "dotenv"
 config()
 

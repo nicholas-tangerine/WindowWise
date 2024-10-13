@@ -2,6 +2,7 @@ import { config } from "dotenv"
 import { readFileSync, writeFile, writeFileSync } from 'fs'
 
 import { createTransport } from "nodemailer";
+import { Axios } from "axios";
 
 import { REST } from '@discordjs/rest';
 import { API } from '@discordjs/core';
@@ -26,7 +27,6 @@ let transporter = createTransport({
 
 
 
-
 /**
  * send dm given username
  * @param {string} globalName 
@@ -45,7 +45,7 @@ export async function sendDM(globalName, embed) {
 /**
  * send email given email addr
  * @param {string} email email addr
- * @param {string} action either 'open' or 'close'
+ * @param {string} message message in addr
  */
 export async function sendEmail(email, message) {
     let mailoptions = {
@@ -70,8 +70,17 @@ export async function emailUsers() {
         if (!user['emailNotifs']) {return}
         
         if (user.epoch < Date.now()) {
-            message = 'Your ' + user.college + ' ' + user.roomType + ' has reached its desired temperature.'
-            sendEmail(user.email, message)
+            const result = Axios.POST('https://api.emailjs.com/api/v1.0/email/send', {
+                service_id: 'service_pmwdihq',
+                template_id: 'template_kenp0g9',
+                user_id: 'SwNGZiXeseaEkWuH9',
+                template_params: {
+                    'college': user.college,
+                    'roomType': user.roomType
+                }
+            })
+
+            console.log(result)
         }
 
     })
