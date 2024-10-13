@@ -20,6 +20,9 @@
                 );
                 overflow: hidden;
             }
+            #appTitle {
+                font-size: 8vh;
+            }
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,15 +34,26 @@
     <body>
         <div class="w-screen h-screen flex justify-center items-center">
             <div
-                class="bg-[#141319] border-[3px] border-[#313131] w-96 h-40 mx-48 p-8 rounded-lg flex flex-col justify-center"
+                class="bg-[#141319] border-[3px] border-[#313131] w-[36rem] h-96 mx-96 p-8 rounded-lg flex flex-col justify-center items-center"
             >
-                <div class="text-xl text-center">
-                    Estimated Time to Temperature
-                </div>
-                <div id="timeLeft" class="text-4xl mt-4 text-center">
-                    {{ time_left }}
-                </div>
-                <!-- <div id="finalTemp text-center">{{ final_temp }}</div> -->
+                <img
+                    src="https://i.imgur.com/UXbPmV2.png"
+                    alt="Logo"
+                    class="aspect-square w-32"
+                />
+                <div id="appTitle" class="">WindowWise</div>
+                <p class="text-center mb-4">
+                    The sustainable alternative to air conditioning.
+                </p>
+                <div class="text-xl">Estimated Time to Temperature</div>
+                <div id="timeLeft" class="text-4xl mt-4">{{ time_left }}</div>
+                <!-- <div id="finalTemp ">{{ final_temp }}</div> -->
+            </div>
+            <div class="w-full flex justify-center absolute bottom-0">
+                <p class="text-sm">
+                    Built for UCSC ACMHacks 2024 Hackathon by Jonathan Uhler,
+                    Nicholas Tang, and Sean Goudie
+                </p>
             </div>
         </div>
     </body>
