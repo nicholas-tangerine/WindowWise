@@ -1,7 +1,7 @@
 import { config } from "dotenv"
 import { readFileSync, writeFile, writeFileSync } from 'fs'
 
-//import email stuff 
+import { createTransport } from "nodemailer";
 
 import { REST } from '@discordjs/rest';
 import { API } from '@discordjs/core';
@@ -14,6 +14,17 @@ let users = data['users']
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 const api = new API(rest);
+
+
+let transporter = createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+    }
+})
+
+
 
 
 /**
@@ -36,11 +47,34 @@ export async function sendDM(globalName, embed) {
  * @param {string} email email addr
  * @param {string} action either 'open' or 'close'
  */
-export async function sendEmail(email, action) {
-    users.forEach(user => {
-        if (!user['emailNotifs']) return
+export async function sendEmail(email, message) {
+    let mailoptions = {
+        from: 'closeyourwindow2024@gmail.com',
+        to: email,
+        subject: 'It\'s time to close your windows!',
+        text: message
+    }
+
+    transporter.sendMail(mailoptions, function(error, info) {
+        if (error) {
+            console.log(error)
+        } else {
+            console.log('Email sent: ' + info.response)
+        }
     })
     return
+}
+
+export async function emailUsers() {
+    users.forEach(user => {
+        if (!user['emailNotifs']) {return}
+        
+        if (user.epoch < Date.now()) {
+            message = 'Your ' + user.college + ' ' + user.roomType + ' has reached its desired temperature.'
+            sendEmail(user.email, message)
+        }
+
+    })
 }
 
 /**
